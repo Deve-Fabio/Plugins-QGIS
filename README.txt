@@ -1,0 +1,1 @@
+Plugin desenvolvido em python para consulta espacial e relacional no softwere QGIS.
