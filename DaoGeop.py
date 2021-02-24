@@ -17,9 +17,8 @@ cur=Connect.conexao_db(self=None)  #Pega cursor da classe de conexão.
 class GeopEspacial:
 
     def getCampo (self, camada):
-        esquema = 'espacial'
         tipo_dado = 'character varying'
-        cur.execute("SELECT column_name FROM information_schema.columns WHERE table_name='%s' and table_schema='%s' AND data_type='%s';" %(camada,esquema,tipo_dado))
+        cur.execute("SELECT column_name FROM information_schema.columns WHERE table_name='%s' AND data_type='%s';" %(camada,tipo_dado))
         dados = cur.fetchall()
         return dados
         cur.close()

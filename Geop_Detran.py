@@ -155,9 +155,11 @@ class GeopDetran:
         layers = self.iface.mapCanvas().layers()
         layer_list = []  # vetor
         for layer in layers:
-            layer_list.append(layer.name())  # Nome da camada
-            self.dlg.comboBox_camada.addItems(layer_list)  # Visualizo na tela
-        pass
+            if layer not in layer_list:
+                layer_list.append(layer.name())  # Nome da camada
+                self.dlg.comboBox_camada.addItems(layer_list)  # Visualizo na tela
+            else:
+                pass
 
     # Setar os campos
     def setCampo(self):
@@ -165,4 +167,9 @@ class GeopDetran:
         camada = self.dlg.comboBox_camada.currentText()  # Pega camada escolhida
         res = inst.getCampo(camada)                      # Tras campos da camada escolhida
         for lis_cam in res:
-            self.dlg.comboBox_camada_compo.addItems(lis_cam)
+            if not lis_cam: # Se a camada está vazia
+                print('Camada não está no banco de dados')
+            else: # Se não está vazia
+                self.dlg.comboBox_camada_compo.addItems(lis_cam)
+
+
