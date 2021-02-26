@@ -18,16 +18,17 @@ class GeopEspacial:
 
     def getCampo (self, camada):
         tipo_dado = 'character varying'
-        cur.execute("SELECT column_name FROM information_schema.columns WHERE table_name='%s' AND data_type='%s';" %(camada,tipo_dado))
-        dados = cur.fetchall()
-        return dados
+        sql = f"SELECT DISTINCT column_name FROM information_schema.columns WHERE table_name='{camada}' AND data_type='{tipo_dado}';"
+        cur.execute(sql)
+        res = cur.fetchall()
+        return res
         cur.close()
 
-    def atributo(self, atrib, camada):
-        sql = 'SELECT "%s" FROM espacial."%s";' % (atrib, camada)
+    def getAtributo(self, atrib, camada):
+        sql = f"SELECT DISTINCT {atrib} FROM {camada};"
         cur.execute(sql)
-        resul = cur.fetchall()
-        return resul
+        res = cur.fetchall()
+        return res
      
     def sinalizacao (self, atrib):
         conexao = self.connectBanco()

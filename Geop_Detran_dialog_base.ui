@@ -129,7 +129,7 @@
             <string>Camada</string>
            </property>
           </widget>
-          <widget class="QComboBox" name="comboBox_camada_compo">
+          <widget class="QComboBox" name="comboBox_campo">
            <property name="geometry">
             <rect>
              <x>0</x>
@@ -139,7 +139,7 @@
             </rect>
            </property>
           </widget>
-          <widget class="QComboBox" name="comboBox_camada_atributo">
+          <widget class="QComboBox" name="comboBox_atributo">
            <property name="geometry">
             <rect>
              <x>0</x>
@@ -149,7 +149,7 @@
             </rect>
            </property>
           </widget>
-          <widget class="QComboBox" name="comboBox_camada_sinalizacao">
+          <widget class="QComboBox" name="comboBox_sinaliz">
            <property name="geometry">
             <rect>
              <x>0</x>
@@ -248,8 +248,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>157</width>
-            <height>387</height>
+            <width>98</width>
+            <height>28</height>
            </rect>
           </property>
           <attribute name="label">
@@ -379,8 +379,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>157</width>
-            <height>387</height>
+            <width>98</width>
+            <height>28</height>
            </rect>
           </property>
           <attribute name="label">

@@ -21,25 +21,22 @@
  *                                                                         *
  ***************************************************************************/
 """
-from qgis.PyQt.QtCore import *
-from qgis.PyQt.QtGui import *
-from qgis.PyQt.QtWidgets import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-from qgis.utils import *
-from qgis.core import *
+
 
 # Initialize Qt resources from file resources.py
 from .resources import *
-# Import the code for the dialog
+# Importe o dialogo
 from .Geop_Detran_dialog import GeopDetranDialog
 import os.path
 # Importa controle
 from .DaoGeop import GeopEspacial
 
-global inst; # Variável global
+global inst, camada; # Variável global
 inst=GeopEspacial()  # Recebe a classe de controle
+
 
 class GeopDetran:
     """QGIS Plugin Implementação."""
@@ -143,6 +140,8 @@ class GeopDetran:
 
     def conectaEventos(self):
         self.dlg.comboBox_camada.activated.connect(self.setCampo)
+        self.dlg.comboBox_campo.activated.connect(self.setAtributos) # Quando acionado o campo de atributo
+
 
         pass
 
@@ -163,13 +162,25 @@ class GeopDetran:
 
     # Setar os campos
     def setCampo(self):
-        self.dlg.comboBox_camada_compo.clear()           # Limpar campo
+        self.dlg.comboBox_campo.clear()           # Limpar campo
         camada = self.dlg.comboBox_camada.currentText()  # Pega camada escolhida
         res = inst.getCampo(camada)                      # Tras campos da camada escolhida
         for lis_cam in res:
             if not lis_cam: # Se a camada está vazia
                 print('Camada não está no banco de dados')
             else: # Se não está vazia
-                self.dlg.comboBox_camada_compo.addItems(lis_cam)
+                self.dlg.comboBox_campo.addItems(lis_cam)
+
+    # Setar atributos
+    def setAtributos(self):
+        self.dlg.comboBox_atributo.clear()
+        atributo = self.dlg.comboBox_campo.currentText()
+        camada = self.dlg.comboBox_camada.currentText()
+        res = inst.getAtributo(atributo,camada)
+        for lis_atr in res:
+            if not lis_atr:
+                print(f'Não tem dados')
+            else:
+                self.dlg.comboBox_atributo.addItems(lis_atr)
 
 
